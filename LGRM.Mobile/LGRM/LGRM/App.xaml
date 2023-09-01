@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LGRM.XamF.App"
+             xmlns:converter="clr-namespace:LGRM.XamF.Converters">
+    <Application.Resources>
+
+        <converter:ConvertBool4Color x:Key="Bool4Color"/>
+        <!--<converter:ConvertFloat2Color x:Key="Float2Color"/>-->
+        <converter:ConvertString2HexColor x:Key="String2HexColor"/>
+        <converter:ConvertStringExists2Visibility x:Key="StringExists2Visibility"/>
+
+        <ResourceDictionary >
+            
+                <!--<ResourceDictionary Source= "Styles\Standards.xaml"/>-->
+
+
+            <!--    Colors .............................................................    -->
+            <Color x:Key="DefaultTextColor" >#003447</Color>
+            <Color x:Key="DefaultEmptySpaceBG" >#003447</Color>
+            <Color x:Key="DefaultEntryBG" >#d5d8dc</Color>
+
+            <Color x:Key="GeneralBG">#FFFFFF</Color>
+            <!--#0A1A23-->
+            <Color x:Key="NeutralBG1">#ece6bb</Color>
+            <Color x:Key="NeutralBG2">LightGray</Color>
+
+            <Color x:Key="LeansA1">#8a5387</Color>
+            <Color x:Key="LeansA2">#7a81ff</Color>
+
+            <Color x:Key="GreensA1">#31a27a</Color>
+            <Color x:Key="GreensA2">#007955</Color>
+
+            <Color x:Key="HealthyFatsA1">#2a8aa0</Color>
+            <Color x:Key="HealthyFatsA2">#ff7145</Color>
+
+            <Color x:Key="CondimentsA1">#df9234</Color>
+            <Color x:Key="CondimentsA2">SlateBlue</Color>
+
+            <Color x:Key="Grey100">#4F6979</Color>
+            <Color x:Key="Grey50">#27353D</Color>
+
+
+            <!--    Font Sizes .........................................................    -->
+            <x:Double x:Key="FontL">20</x:Double>
+            <x:Double x:Key="FontM">16</x:Double>
+            <x:Double x:Key="FontB">12</x:Double>
+
+            <x:Double x:Key="H1FontSize">20</x:Double>
+            <x:Double x:Key="H2FontSize">18</x:Double>
+            <x:Double x:Key="DefaultFontSize">15</x:Double>
+
+
+
+            <!--    Implicit Styles ....................................................    -->
+            <!--    Layouts...     -->
+
+
+            
+            <Style TargetType="StackLayout">
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="Spacing" Value="0" />
+            </Style>
+
+
+            <!--    Views...     -->
+            <Style TargetType="View">
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0" />
+            </Style>
+
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource DefaultTextColor}" />
+                <Setter Property="FontSize" Value="{StaticResource DefaultFontSize}" />
+            </Style>
+
+            <Style TargetType="Button">
+                <Setter Property="TextColor" Value="{StaticResource DefaultTextColor}" />
+                <Setter Property="FontSize" Value="{StaticResource DefaultFontSize}" />
+            </Style>
+
+            <Style TargetType="Entry">
+                <Setter Property="TextColor" Value="{StaticResource DefaultTextColor}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource DefaultEntryBG}"/>
+                <Setter Property="FontSize" Value="{StaticResource DefaultFontSize}" />
+                <Setter Property="HeightRequest" Value="38"/>
+            </Style>
+
+            <Style TargetType="Picker">
+                <Setter Property="TextColor" Value="{StaticResource DefaultTextColor}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource DefaultEntryBG}"/>
+                <Setter Property="FontSize" Value="{StaticResource DefaultFontSize}" />
+            </Style>
+
+            <Style TargetType="SearchBar">
+                <Setter Property="TextColor" Value="{StaticResource DefaultTextColor}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource DefaultEntryBG}"/>
+                <Setter Property="FontSize" Value="{StaticResource DefaultFontSize}" />
+            </Style>
+
+
+
+            <!--    Explicit Styles ....................................................    -->
+
+            <!--    Bases...     -->
+            <!--    Base Layouts...     -->
+            <Style TargetType="StackLayout" x:Key="BaseStack">
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="Spacing" Value="0" />
+            </Style>
+
+            <!--    Base Views...     -->
+            <Style TargetType="View" x:Key="BaseView">
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0" />
+            </Style>
+
+            <Style x:Key="BaseLabel"
+                    TargetType="Label" BasedOn="{StaticResource BaseView}"  >
+                <Setter Property="TextColor" Value="{StaticResource DefaultTextColor}" />
+                <Setter Property="FontSize" Value="{StaticResource DefaultFontSize}" />
+                <Setter Property="Padding" Value="0" />
+            </Style>
+
+            <Style x:Key="BaseButton"
+                    TargetType="Button"  BasedOn="{StaticResource BaseView}" >
+                <Setter Property="TextColor" Value="{StaticResource DefaultTextColor}" />
+                <Setter Property="FontSize" Value="{StaticResource DefaultFontSize}" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="BackgroundColor" Value="LightBlue" />
+            </Style>
+
+            <Style x:Key="BaseEntry"           
+                   TargetType="Entry" BasedOn="{StaticResource BaseView}"  >
+                <Setter Property="TextColor" Value="{StaticResource DefaultTextColor}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource DefaultEntryBG}" />
+                <Setter Property="FontSize" Value="{StaticResource DefaultFontSize}" />
+                <Setter Property="HeightRequest" Value="38"/>
+                <Setter Property="Margin" Value="0" />
+            </Style>
+
+            <!--<Style x:Key="BasePicker"
+           TargetType="Picker" BasedOn="{StaticResource BaseView}"  >
+                <Setter Property="TextColor" Value="{StaticResource DefaultTextColor}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource DefaultEntryBG}" />
+                <Setter Property="FontSize" Value="{StaticResource DefaultFontSize}" />
+                <Setter Property="Margin" Value="0" />
+            </Style>-->
+
+            <!--<Style x:Key="BaseSearchBar"
+                       TargetType="SearchBar" >
+                --><!--BasedOn="{StaticResource BaseInputView}"--><!--
+                <Setter Property="TextColor" Value="{StaticResource DefaultTextColor}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource DefaultEntryBG}" />
+                <Setter Property="FontSize" Value="{StaticResource DefaultFontSize}" />
+                <Setter Property="Margin" Value="0" />
+            </Style>-->
+
+            <!--    H1...     -->
+            <!--    H1 Layouts...     -->
+            <Style x:Key="H1HorizontalStack"
+                   TargetType="StackLayout" BasedOn="{StaticResource BaseStack}"  >
+                <Setter Property="Orientation" Value="Horizontal" />
+                <Setter Property="Margin" Value="0,8,0,0" />
+                <Setter Property="HeightRequest" Value="40" />
+            </Style>
+
+
+            <!--    H1 Views...     -->
+            <Style x:Key="H1Label"
+                   TargetType="Label" BasedOn="{StaticResource BaseLabel}"  >
+                <Setter Property="TextColor" Value="{StaticResource DefaultTextColor}" />
+                <Setter Property="FontSize" Value="{StaticResource H1FontSize}" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+            </Style>
+
+
+            <Style x:Key="H1Button"
+           TargetType="Button" BasedOn="{StaticResource BaseButton}" >
+                <Setter Property="TextColor" Value="{StaticResource DefaultTextColor}" />
+                <Setter Property="FontSize" Value="{StaticResource H1FontSize}" />
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="CornerRadius" Value="0" />
+                <Setter Property="BorderWidth" Value="0" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="TextTransform" Value="None" />
+            </Style>
+
+
+
+
+            <!--    H2 Views...     -->
+            <Style x:Key="H2Button"
+                    TargetType="Button" BasedOn="{StaticResource H1Button}"  >
+                <Setter Property="Margin" Value="0,8,0,0" />
+                <Setter Property="WidthRequest" Value="30" />
+                <Setter Property="FontSize" Value="{StaticResource H2FontSize}" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                
+            </Style>
+
+
+
+            <!--    Body Layouts...     -->
+            <Style x:Key="HorizontalStack"
+                    TargetType="StackLayout" BasedOn="{StaticResource BaseStack}"  >
+                <Setter Property="Orientation" Value="Horizontal" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+            </Style>
+
+
+
+
+            <!--    Ingredient Views...     -->
+            <Style x:Key="UomLabel"
+           TargetType="Label" BasedOn="{StaticResource BaseLabel}"  >
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalTextAlignment" Value="End" />
+                <Setter Property="LineBreakMode" Value="TailTruncation" />
+                <Setter Property="Padding" Value="8,0,0,0" />
+            </Style>
+
+            <Style x:Key="UomEntry"
+           TargetType="Entry" BasedOn="{StaticResource BaseEntry}"  >
+                <Setter Property="Keyboard" Value="Numeric" />
+                <Setter Property="HorizontalTextAlignment" Value="End" />
+                <Setter Property="WidthRequest" Value="60" />
+                <Setter Property="HeightRequest" Value="38" />
+            </Style>
+
+            <!--<Style TargetType="Button">
+                <Setter Property="TextColor" Value="White"></Setter>
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#332196F3" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>-->
+        </ResourceDictionary>
+
+    </Application.Resources>
+</Application>
+    

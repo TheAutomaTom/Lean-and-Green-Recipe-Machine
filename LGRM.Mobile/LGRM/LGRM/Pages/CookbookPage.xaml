@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LGRM.XamF.Pages.CookbookPage"
+             xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+             Title ="My Cookbook" >
+    
+    <ContentPage.Content >
+
+        <StackLayout x:Name="MyCookbookPage" Spacing="0" BackgroundColor="{StaticResource DefaultEmptySpaceBG}">
+
+            
+            
+            <StackLayout x:Name="CookbookControls" Style="{StaticResource H1HorizontalStack}">                
+                <skia:SKCanvasView x:Name="canvas1" PaintSurface="canvas_Open2Title" />
+                <Label Text = "My Cookbook" BackgroundColor="{StaticResource NeutralBG1}" Style="{StaticResource H1Label}" VerticalOptions="Fill"/>
+                <skia:SKCanvasView x:Name="canvas2" PaintSurface="canvas_Open2Sub" />
+                <Button ImageSource="plus_white_18dp.png" Command="{Binding CreateNewRecipeCommand}" BackgroundColor="{StaticResource NeutralBG2}" Style="{StaticResource H2Button}" />
+                <skia:SKCanvasView x:Name="canvas3" PaintSurface="canvas_Sub2Open" />
+                <ActivityIndicator x:Name="indicator" Color="CornflowerBlue"  />                
+            </StackLayout>
+
+            
+            <StackLayout BackgroundColor="{StaticResource NeutralBG1}" Padding="0,8,0,0" >
+                
+                <Label Text="{Binding RecipesDisplayed.Count, StringFormat='{0} Recipes Saved'}" HorizontalOptions="Start" Padding="35,0,0,0"/>
+
+                
+
+                <ScrollView>                    
+                    <CollectionView x:Name="RecipesCV"
+                                    ItemSizingStrategy="MeasureFirstItem"   
+                                    Margin="8"                                    
+                                    SelectionMode="None"
+                                    ItemsSource="{Binding RecipesDisplayed}"
+                                    SelectedItem="{Binding SelectedItem}" 
+                                    VerticalOptions="Fill">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Vertical" ItemSpacing="8" />                            
+                        </CollectionView.ItemsLayout>                                
+                              
+                        <CollectionView.EmptyView>
+                            <Label Text="Your cookbook is empty!"/>
+                        </CollectionView.EmptyView>
+
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid 
+                                    RowSpacing="0" BackgroundColor="AliceBlue" >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="78" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="60" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="28" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="28" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+
+
+                                 
+                                    <Label Text="{Binding Name}" 
+                                            Grid.Column="1" Grid.Row="0" />                                    
+                                    
+                                    <!-- Recipe Info Stack... -->
+                                    <StackLayout Orientation="Horizontal" 
+                                                 Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" >
+                                        <Label Text="{Binding Serves, StringFormat='Recipe Serves {0} w/ '}" />
+                                        <Label Text="{Binding IngredientsCount, StringFormat='{0} Ingredients'}" />                                        
+                                    </StackLayout>
+                                    
+                                    <!-- Recipe Controls... -->
+                                    <Button Clicked="LoadButton_Clicked" CommandParameter = "{Binding .}"
+                                            BackgroundColor="CornflowerBlue" TextColor="White" Margin="8"
+                                            ImageSource="baseline_edit_white_18dp.png"
+                                            Grid.Column="2" Grid.Row="0" Grid.RowSpan="2"/>
+                                    <Button Clicked="DeleteButton_Clicked" CommandParameter = "{Binding .}"
+                                            BackgroundColor="Gray" TextColor="White" Margin="8"
+                                            ImageSource="baseline_clear_white_18dp.png"
+                                            Grid.Column="2" Grid.Row="2" Grid.RowSpan="2"/>
+                                    
+                                    
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    
+
+                </ScrollView>
+                <Label Text="{Binding FooterText}" HorizontalOptions="Center"/>
+            </StackLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

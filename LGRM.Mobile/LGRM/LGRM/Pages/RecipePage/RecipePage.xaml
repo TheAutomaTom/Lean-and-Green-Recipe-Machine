@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LGRM.XamF.Pages.RecipePage"
+             xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+                          >
+    
+    <ContentPage.Content>
+        <ScrollView MinimumHeightRequest="1" BackgroundColor="{StaticResource DefaultEmptySpaceBG}" >
+            
+            <StackLayout VerticalOptions="FillAndExpand" >
+                <StackLayout x:Name="NameAndControls" Style="{StaticResource H1HorizontalStack}">
+                    <skia:SKCanvasView x:Name="canvas1" PaintSurface="canvas_Open2Title" />
+
+
+                    <Button Text = "{Binding Recipe.Name}" Command="{Binding SaveOrUpdateRecipeDialogCommand}" 
+                            BackgroundColor="{StaticResource NeutralBG1}"  Style="{StaticResource H1Button}" 
+                            ImageSource="baseline_edit_black_18dp.png"/>
+                    
+                    
+                    <skia:SKCanvasView x:Name="canvas2" PaintSurface="canvas_Open2Sub" />
+                    <Button ImageSource="baseline_clear_white_18dp.png" Command="{Binding VerifyClearRecipeDialogCommand}" BackgroundColor="{StaticResource NeutralBG2}" Style="{StaticResource H2Button}" />
+                    <skia:SKCanvasView x:Name="canvas3" PaintSurface="canvas_Sub2Open" />
+                </StackLayout>
+                
+                <StackLayout x:Name="Summaries" BackgroundColor="{StaticResource NeutralBG1}" Padding="0,8" >                    
+                        <!-- cs -->                    
+                </StackLayout>
+
+                <StackLayout x:Name="IngredientLists" VerticalOptions="FillAndExpand" />
+                <!--MinimumHeightRequest="{Binding HeightOA}"-->
+                <!-- cs -->
+
+           </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
+    
+    

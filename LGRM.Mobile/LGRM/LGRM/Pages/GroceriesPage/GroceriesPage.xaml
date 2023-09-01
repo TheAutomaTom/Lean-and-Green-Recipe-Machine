@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LGRM.XamF.Pages.GroceriesPage"
+             
+             xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+             >
+    <ContentPage.Content>
+        <StackLayout >
+
+            <StackLayout x:Name="GroceriesControls" Style="{StaticResource H1HorizontalStack}" BackgroundColor="{StaticResource NeutralBG1}" Padding="0,8,0,0" Margin="0">
+                <skia:SKCanvasView x:Name="canvas1" PaintSurface="canvas_Open2Title" />
+
+                <StackLayout x:Name="pickerStack" Style="{StaticResource BaseStack}" 
+                             VerticalOptions="Fill" HeightRequest="40" Padding="0" Margin="0" >
+                    
+                    <Picker x:Name="picker" ItemsSource="{Binding Categories}" SelectedItem="{Binding SelectedCategory}" 
+                        TextColor="White" FontAttributes="Bold" FontSize="Medium" 
+                            Margin="0" HeightRequest="40"/>
+                    
+                </StackLayout>
+                
+                
+                
+                
+                
+                <skia:SKCanvasView x:Name="canvas2" PaintSurface="canvas_Title2Open" />
+                <Entry x:Name="searchEntry" Text="{Binding SearchQuery, Mode=TwoWay}" 
+                       Style="{StaticResource BaseEntry}" WidthRequest="100" Margin="0" VerticalOptions="Fill" BackgroundColor="{StaticResource DefaultEntryBG}"/>
+                <Button ImageSource="baseline_clear_white_18dp.png" Clicked="ClearSearch_Clicked" IsVisible="{Binding ClearSearchIsVisible}" 
+                        Style="{StaticResource H2Button}" BackgroundColor="{StaticResource NeutralBG1}" Padding="4,0"/>
+                                
+                
+                <Button ImageSource="{Binding DisplayedShowItemsIcon}" Command="{Binding ShowSelectedItemsCommand}" 
+                        Style="{StaticResource H2Button}" BackgroundColor="{StaticResource NeutralBG1}" Padding="4,0"/>
+                
+                
+            </StackLayout>
+
+            <StackLayout x:Name="cvStack" Padding="8" >
+            <CollectionView x:Name="GroceriesCollection" 
+                            VerticalOptions="FillAndExpand"
+                            SelectionMode="Multiple"
+                            ItemsSource="{Binding DisplayedGroceries}"
+                            SelectionChangedCommand="{Binding SelectedGroceriesChanged}"                            
+                            SelectedItems="{Binding SelectedItems}"                            
+                            >
+
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="8" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.EmptyView>
+                    <Label Text="Uh oh! No groceries loaded!" />
+                </CollectionView.EmptyView>
+                
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid
+                            RowSpacing="0"
+                            Margin="8"
+                            BackgroundColor="{Binding IsSelected, Converter={StaticResource Bool4Color}}" 
+                            >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="78" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="78" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="28" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="28" />
+                                <RowDefinition Height="28" />
+                            </Grid.RowDefinitions>                            
+                            
+                            <!-- g.Icon... -->
+                            <Image Source="{Binding IconName}" BackgroundColor="{Binding IconColor1, Converter={StaticResource String2HexColor}}" 
+                                   Grid.Column="0" Grid.Row="0" Grid.RowSpan="4" />
+                            
+                            <!-- g.Name... -->
+                            <StackLayout
+                                Grid.Column="1" Grid.Row="0" Grid.RowSpan="4" >
+                                <Label Text="{Binding Name1}"       LineBreakMode="TailTruncation" />
+                                <Label Text="{Binding Name2}"       LineBreakMode="TailTruncation" />
+                                <Label Text="{Binding EtcString}"   LineBreakMode="TailTruncation" />
+                            </StackLayout>
+                            
+                            <!-- g.Measurements... -->
+                            <StackLayout
+                                Grid.Column="2" Grid.Row="0" Grid.RowSpan="4" >
+                                <Label Text="{Binding WeightServing}" IsVisible="{Binding WeightServing, Converter={StaticResource StringExists2Visibility}}" />
+                                <Label Text="{Binding VolumeServing}" IsVisible="{Binding VolumeServing, Converter={StaticResource StringExists2Visibility}}" />
+                                <Label Text="{Binding CountServing}"  IsVisible="{Binding CountServing,  Converter={StaticResource StringExists2Visibility}}" />
+                            </StackLayout>
+
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                
+                
+                
+                
+                
+            </CollectionView>
+            </StackLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <Label Text="{Binding FooterText}" HorizontalOptions="Center"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

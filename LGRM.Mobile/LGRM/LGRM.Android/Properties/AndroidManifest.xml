@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="13" android:versionName=".76" package="com.TomgCo.LGRM.android" android:installLocation="auto">
+	<uses-sdk android:minSdkVersion="16" android:targetSdkVersion="29" />
+	<application android:label="Lean &amp; Green Recipe Machine" android:theme="@style/MainTheme"></application>
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+</manifest>
